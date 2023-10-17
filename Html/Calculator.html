@@ -1,0 +1,170 @@
+<!-- 
+    Create a basic calculator using HTML, CSS, and javascript with the
+    fuctionality of add, subtract, multiply and divide. Use the
+    following picture for reference 
+-->
+
+<!Doctype html>
+<html>
+
+<head>
+    <title>Basic calculator</title>
+    <style>
+        .outer-box {
+            background-color: gray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            width: 500px;
+
+
+
+        }
+
+        .calculator {
+            width: 200 px;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            gap: 5px;
+
+        }
+
+        .input-box {
+            grid-row: 1 / 2;
+            grid-column: 1 / 6;
+            display: grid;
+            justify-content: flex-end;
+            align-items: center;
+            width: 152px;
+
+
+        }
+
+
+
+        .clear-box {
+            grid-row: 2 / 1;
+            grid-column: 2 / 17;
+            display: grid;
+            justify-content: flex-end;
+            align-items: center;
+            height: 5px;
+
+        }
+
+        .number-box {
+            grid-row: 2 / 6;
+            grid-column: 1 / 4;
+            display: grid;
+            grid-template-columns: repeat(4, 0fr);
+            height: 20px;
+            width: 80px;
+        }
+
+        input[type="text"] {
+            width: 143px;
+
+            font-size: 40px;
+
+
+        }
+
+        input[type="button"] {
+            width: 52px;
+            height: 50px;
+
+            background-color: black;
+            color: white;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="outer-box">
+        <div class="calculator">
+            <div class="input-box">
+                <input type="text" id="display" readonly>
+            </div>
+
+
+            <div class="clear-box">
+                <input type="button" value="AC" id="clear" onclick="clearDisplay()">
+            </div>
+            <div class="number-box">
+                <input type="button" value="1" onclick="appendToDisplay('1')">
+                <input type="button" value="2" onclick="appendToDisplay('2')">
+                <input type="button" value="3" onclick="appendToDisplay('3')">
+
+                <input type="button" value="+" onclick="appendToDisplay('+')">
+                <input type="button" value="4" onclick="appendToDisplay('4')">
+                <input type="button" value="5" onclick="appendToDisplay('5')">
+                <input type="button" value="6" onclick="appendToDisplay('6')">
+                <input type="button" value="-" onclick="appendToDisplay('-')">
+                <input type="button" value="7" onclick="appendToDisplay('7')">
+                <input type="button" value="8" onclick="appendToDisplay('8')">
+                <input type="button" value="9" onclick="appendToDisplay('9')">
+                <input type="button" value="*" onclick="appendToDisplay('*')">
+
+                <input type="button" value="." onclick="clearDisplay('.')">
+                <input type="button" value="0" onclick="appendToDisplay('0')">
+                <input type="button" value="=" onclick="calculate()">
+                <input type="button" value="/" onclick="appendToDisplay('/')">
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById("display").value += value;
+        }
+        function clearDisplay() {
+            document.getElementById("display").value = "";
+        }
+        function calculate() {
+            const display = document.getElementById("display");
+            const expression = display.value;
+
+            try {
+                const result = eval(expression)
+                if (Number.isFinite(result)) {
+                    display.value = result;
+                } else {
+                    display.value = "Error"
+                }
+                // const result = new Function(' retrun '+ expression)();
+                //  display.value= result;
+            } catch (error) {
+                display.value = "Error";
+            }
+        }
+
+    </script>
+</body>
+
+</html>
+
+
+<!--
+    Certainly! I'll break down the JavaScript code and explain it in simpler terms, including the `try` and `catch` block.
+
+1. `appendToDisplay(value)`: This function adds the value you click (like numbers, operators, or a dot) to the display. Imagine it like typing on a calculator's screen. For example, if you click "5," it adds "5" to what's already on the screen.
+
+2. `clearDisplay()`: This function is like pressing the "AC" button on a calculator. It clears everything on the display, making it empty.
+
+3. `calculate()`: When you click the "=" button, this function tries to calculate the result of what's on the display. It's like asking the calculator to give you the answer. The `try` and `catch` blocks are used to handle potential errors.
+
+    - Inside the `try` block, the code uses the `eval` function to calculate the result of what's on the display. For instance, if you typed "5+3" and hit "=", it calculates "5+3" and gives you the answer, which is 8.
+    
+    - If the result is a valid number, it displays the result on the screen.
+    
+    - If there's a problem with the calculation (like dividing by zero or a nonsensical expression), the `try` block will "catch" the error. In this case, it shows "Error" on the screen.
+
+So, the JavaScript part of the code helps you input numbers and operators, clear the display, and calculate results. The `try` and `catch` blocks are there to handle any potential issues that might occur during the calculation, ensuring you see either the result or an error message on the display.
+-->

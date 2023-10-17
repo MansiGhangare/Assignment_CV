@@ -1,0 +1,148 @@
+<!-- create a survey form with Fields; First Name,Last Name, Date of Birth, Country
+    (dropdown), Gender(checkbox), Profession, email, and mobile number. All the input
+    fields are necessary to submit the form. Create two buttons Submit and Reset. Reset 
+    will reset the form while clicking on submit, first, it will checks all the fields and necessary
+    validation and then a popup will uppear displaying all the selected values with labels in
+    front of it. Closing the popup, the form should reset all the values. Use the foloowing
+    image for reference.
+-->
+
+<Doctypt html>
+    <html>
+        <head>
+            <title>Survey Form</title>
+        </head>
+ 
+    <style>
+        .outer-box {
+            background-color: blue;
+            color: black;
+            width: 600px;
+            height: 600px;
+            text-align: center;
+            padding: 250px;
+
+
+        }
+
+        .inner-box {
+            background-color: white;
+            color: black;
+            height: 400px;
+            width: 400px;
+            text-align: left;
+
+
+
+
+        }
+         
+
+    </style>
+
+    <body>
+       
+            <div class="outer-box">
+                <h1>Customer Survey Form </h1>
+                <div class="inner-box" style="padding: 70;">
+                    <form id="surveyForm">
+
+                    <label for="FirstName">First Name:</label>
+                    <input type="text" id="FirstName" name="FirstName" required>  <br> <br>
+
+                    <label for="LastName">Last Name:</label>
+                    <input type="text" id="LastName" name="LastName" required>
+                    <br>
+
+                    <br>
+                    <label for="DOB">Date of Birth:</label>
+                    <input type="date" id="DOB" name="DOB" required> <br> <br>
+
+
+                    <label for="Country"> Country:</label>
+                    <select id="Country" name="Country" required>
+                        <option value="USA">USA</option>
+                        <option value="Canada">Canada</option>
+                        <option value="UK">UK</option>
+                    </select><br><br>
+
+                    <label>Gender:</label>
+                    <input type="checkbox" id="male" name="gender" value="Male">male
+                    <input type="checkbox" id="female" name="gender" value="Female">Female <br><br>
+
+                    <label for="Profession">Profession</label>
+                    <input type="text" name="Profession" id="Profession" required><br><br>
+
+                    <label for="Email">Email:</label>
+                    <input type="text" name="Email" id="Email" required> <br><br>
+
+                    <label for="MobileNo.">Mombile No.:</label>
+                    <input type="tel" id="MobileNo." name="MobileNo." required><Br><Br>
+
+
+
+                    <input type="button" value="Submit" onclick="submitForm()"> &nbsp;
+                    <input type="button" value="Reset" onclick="resetForm()">
+                </form>
+               
+     
+        <div id="popup" style="display: none;">
+            <h2>Survey form submission</h2>
+            <p id="popupContent"></p>
+            <button onclick="closePopup()">Close</button>
+        </div>
+        
+
+        
+
+        <script>
+            function submitForm()
+            {
+                //validation code
+
+                var FirstName = document.getElementById("FirstName").value;
+                var LastName = document.getElementById("LastName").value;
+                var DOB = document.getElementById("DOB").value;
+                var Country = document.getElementById("Country").value;
+                var Gender = document.getElementById("Gender").value;
+                var Profession = document.getElementById("Profession").value;
+                var Email = document.getElementById("Email").value;
+                var MobileNo = document.getElementById("MobileNo.").value;
+
+                //display the valur of popup
+                var popupContent = `
+                First Name: ${FirstName}
+                Last Name: ${LastName}
+                Date of Birth: ${DOB}
+                Country: ${Country}
+                Gender: ${Array.from(gender).map(g => g.value).join(", ")}
+                Profession: ${Profession}
+                Email: ${Email}
+                Mobile Number: ${MobileNo}
+            `;
+            document.getElementById("popupContent").innerHTML = popupContent;
+            document.getElementById("popup").style.display = "block";
+
+            }
+
+            function resetForm()
+            {
+                document.getElementById("surveyForm").reset();
+
+            }
+
+            function closePopup()
+            {
+                document.getElementById("popup").style.display ="none";
+                resetForm();
+            }
+        </script>
+         </div>
+         <h6>©2018 Customer Survey Form. All Rights Reserved | Design by W3Layouts </h6>
+
+         </div>
+
+    </body>
+
+    </html>
+</Doctypt>
